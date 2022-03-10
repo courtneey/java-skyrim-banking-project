@@ -11,7 +11,7 @@ public class Account {
     this.name = userName;
     this.id = userId;
     this.balance = 100;
-    this.previousTransaction = "No transaction history was found";
+    this.previousTransaction = "No transaction history was found.";
   }
 
   public void showMenu() {
@@ -44,10 +44,9 @@ public class Account {
 
       if (selectedOption.equals("a")) {
         checkBalance();
-        System.out.print(nextMessage);
       }
 
-      if (selectedOption.equals("b")) {
+      else if (selectedOption.equals("b")) {
         System.out.print("\nHow much gold would you like to deposit? ");
         try {
           int depositAmount = Integer.valueOf(scanner.nextLine());
@@ -55,10 +54,9 @@ public class Account {
         } catch (NumberFormatException nonNumber) {
           System.out.println("Sorry, a number is required to make a deposit. Please try again.");
         }
-        System.out.print(nextMessage);
       }
 
-      if (selectedOption.equals("c")) {
+      else if (selectedOption.equals("c")) {
         System.out.print("\nHow much gold would you like to withdraw? ");
         try {
           int withdrawalAmount = Integer.valueOf(scanner.nextLine());
@@ -66,20 +64,23 @@ public class Account {
         } catch (NumberFormatException nonNumber) {
           System.out.println("Sorry, a number is required to make a withdrawal. Please try again.");
         }
-        System.out.print(nextMessage);
       }
 
-      if (selectedOption.equals("d")) {
+      else if (selectedOption.equals("d")) {
         displayPreviousTransaction();
-        System.out.print(nextMessage);
       }
 
-      if (selectedOption.equals("e")) {
+      else if (selectedOption.equals("e")) {
         System.out.print("Enter number of years: ");
         int numYears = Integer.valueOf(scanner.nextLine());
         displayInterest(numYears);
-        System.out.print(nextMessage);
       }
+
+      else {
+        System.out.println("Invalid input. Please try again.");
+      }
+
+      System.out.print(nextMessage);
 
     }
 
@@ -97,9 +98,7 @@ public class Account {
 
   public void makeDeposit(int amount) {
     this.balance += amount;
-    System.out.println("\n" + border);
     this.previousTransaction = displayNewBalance();
-    System.out.println(border);
   }
 
   public void makeWithdrawal(int amount) {
@@ -120,13 +119,18 @@ public class Account {
 
   public String displayNewBalance() {
     String newBalanceMsg = "Your new balance is: " + this.balance + " gold";
+
+    System.out.println("\n" + border);
     System.out.println(newBalanceMsg);
+    System.out.println(border);
 
     return newBalanceMsg;
   }
 
   public void displayPreviousTransaction() {
+    System.out.println("\n" + border);
     System.out.println(this.previousTransaction);
+    System.out.println(border);
   }
 
   public void displayInterest(int years) {
