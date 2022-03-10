@@ -69,41 +69,53 @@ public class Account {
         System.out.print(nextMessage);
       }
 
+      if (selectedOption.equals("d")) {
+        displayPreviousTransaction();
+        System.out.print(nextMessage);
+      }
+
     }
 
     System.out.println("\n\nThank you for banking with Tamriel Bank!");
   }
 
   public void checkBalance() {
+    String checkBalanceMsg = "Your current balance is: " + this.balance + " gold";
     System.out.println("\n" + border);
-    System.out.println("Your current balance is: " + this.balance + " gold");
+    System.out.println(checkBalanceMsg);
     System.out.println(border);
+
+    this.previousTransaction = checkBalanceMsg;
   }
 
   public void makeDeposit(int amount) {
     this.balance += amount;
     System.out.println("\n" + border);
-    displayNewBalance();
+    this.previousTransaction = displayNewBalance();
     System.out.println(border);
   }
 
   public void makeWithdrawal(int amount) {
+    String withdrawalMsg = "";
     if (amount == 0) {
-      System.out.println("Withdrawal amount must be greater than 0. Please try again.");
+      withdrawalMsg = "Withdrawal amount must be greater than 0. Please try again.";
+      System.out.println(withdrawalMsg);
     } else if (this.balance >= amount) {
       this.balance -= amount;
-      displayNewBalance();
+      withdrawalMsg = displayNewBalance();
     } else {
-      System.out.println("Insufficient balance. Please try again.");
+      withdrawalMsg = "Insufficient balance. Please try again.";
+      System.out.println(withdrawalMsg);
     }
+
+    this.previousTransaction = withdrawalMsg;
   }
 
-  public void displayNewBalance() {
-    System.out.println("Your new balance is: " + this.balance + " gold");
-  }
+  public String displayNewBalance() {
+    String newBalanceMsg = "Your new balance is: " + this.balance + " gold";
+    System.out.println(newBalanceMsg);
 
-  public void updatePreviousTransaction(String newTransaction) {
-
+    return newBalanceMsg;
   }
 
   public void displayPreviousTransaction() {
