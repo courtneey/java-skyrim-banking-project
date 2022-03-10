@@ -13,7 +13,6 @@ public class Account {
 
   public void showMenu() {
     Scanner scanner = new Scanner(System.in);
-    String border = "\n**********\n";
 
     System.out.println("Welcome, " + this.name + "!");
     System.out.println("Your account ID is: " + this.id);
@@ -33,14 +32,25 @@ public class Account {
     }
 
     System.out.print("\nEnter an option: ");
-    String selectedOption = scanner.nextLine().toLowerCase();
+    String selectedOption = "";
+    String border = "\n**********\n";
+    String nextMessage = "\nWhat would you like to do next? ";
 
-    if (selectedOption.equals("a")) {
+    while (!selectedOption.equals("f")) {
+
+      selectedOption = scanner.nextLine().toLowerCase();
+
+      System.out.println("\n" + border);
+
+      if (selectedOption.equals("a")) {
+        checkBalance();
+      }
+
       System.out.println(border);
-      checkBalance();
-      System.out.println(border);
+      System.out.print(nextMessage);
     }
 
+    System.out.println("\n\nThank you for banking with Tamriel Bank!");
   }
 
   public void checkBalance() {
