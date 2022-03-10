@@ -4,12 +4,14 @@ public class Account {
   String name;
   String id;
   int balance;
+  String previousTransaction;
   static String border = "\n**********\n";
 
   public Account(String userName, String userId) {
     this.name = userName;
     this.id = userId;
     this.balance = 100;
+    this.previousTransaction = "No transaction history was found";
   }
 
   public void showMenu() {
@@ -98,6 +100,14 @@ public class Account {
 
   public void displayNewBalance() {
     System.out.println("Your new balance is: " + this.balance + " gold");
+  }
+
+  public void updatePreviousTransaction(String newTransaction) {
+
+  }
+
+  public void displayPreviousTransaction() {
+    System.out.println(this.previousTransaction);
   }
 
 }
