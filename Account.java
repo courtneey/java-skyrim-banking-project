@@ -47,8 +47,12 @@ public class Account {
 
       if (selectedOption.equals("b")) {
         System.out.print("\nHow much gold would you like to deposit? ");
-        int depositAmount = Integer.valueOf(scanner.nextLine());
-        makeDeposit(depositAmount);
+        try {
+          int depositAmount = Integer.valueOf(scanner.nextLine());
+          makeDeposit(depositAmount);
+        } catch (NumberFormatException nonNumber) {
+          System.out.println("Sorry, a number is required to make a deposit. Please try again.");
+        }
         System.out.print(nextMessage);
       }
 
