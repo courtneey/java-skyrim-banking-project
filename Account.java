@@ -4,6 +4,7 @@ public class Account {
   String name;
   String id;
   int balance;
+  static String border = "\n**********\n";
 
   public Account(String userName, String userId) {
     this.name = userName;
@@ -33,28 +34,40 @@ public class Account {
 
     System.out.print("\nEnter an option: ");
     String selectedOption = "";
-    String border = "\n**********\n";
     String nextMessage = "\nWhat would you like to do next? ";
 
     while (!selectedOption.equals("f")) {
 
       selectedOption = scanner.nextLine().toLowerCase();
 
-      System.out.println("\n" + border);
-
       if (selectedOption.equals("a")) {
         checkBalance();
+        System.out.print(nextMessage);
       }
 
-      System.out.println(border);
-      System.out.print(nextMessage);
+      if (selectedOption.equals("b")) {
+        System.out.print("\nHow much gold would you like to deposit? ");
+        int depositAmount = Integer.valueOf(scanner.nextLine());
+        makeDeposit(depositAmount);
+        System.out.print(nextMessage);
+      }
+
     }
 
     System.out.println("\n\nThank you for banking with Tamriel Bank!");
   }
 
   public void checkBalance() {
+    System.out.println("\n" + border);
     System.out.println("Your current balance is: " + this.balance + " gold");
+    System.out.println(border);
+  }
+
+  public void makeDeposit(int amount) {
+    this.balance += amount;
+    System.out.println("\n" + border);
+    System.out.println("Your new balance is: " + this.balance + " gold");
+    System.out.println(border);
   }
 
 }
