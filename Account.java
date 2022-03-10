@@ -74,6 +74,13 @@ public class Account {
         System.out.print(nextMessage);
       }
 
+      if (selectedOption.equals("e")) {
+        System.out.print("Enter number of years: ");
+        int numYears = Integer.valueOf(scanner.nextLine());
+        displayInterest(numYears);
+        System.out.print(nextMessage);
+      }
+
     }
 
     System.out.println("\n\nThank you for banking with Tamriel Bank!");
@@ -120,6 +127,21 @@ public class Account {
 
   public void displayPreviousTransaction() {
     System.out.println(this.previousTransaction);
+  }
+
+  public void displayInterest(int years) {
+    double interestRate = 0.01;
+    double newBalance = this.balance + (this.balance * interestRate * years);
+
+    System.out.println("\n" + border);
+    String interestMsg = "The current interest rate is: " + (interestRate * 100) + "%";
+    String interestBalanceMsg = "After " + years + " year(s), your balance will be: " + newBalance + " gold";
+    System.out.println(interestMsg);
+    System.out.println(interestBalanceMsg);
+    System.out.println(border);
+
+    this.previousTransaction = interestMsg + "\n" + interestBalanceMsg;
+
   }
 
 }
