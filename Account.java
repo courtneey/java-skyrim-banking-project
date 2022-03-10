@@ -56,6 +56,17 @@ public class Account {
         System.out.print(nextMessage);
       }
 
+      if (selectedOption.equals("c")) {
+        System.out.print("\nHow much gold would you like to withdraw? ");
+        try {
+          int withdrawalAmount = Integer.valueOf(scanner.nextLine());
+          makeWithdrawal(withdrawalAmount);
+        } catch (NumberFormatException nonNumber) {
+          System.out.println("Sorry, a number is required to make a withdrawal. Please try again.");
+        }
+        System.out.print(nextMessage);
+      }
+
     }
 
     System.out.println("\n\nThank you for banking with Tamriel Bank!");
@@ -70,8 +81,23 @@ public class Account {
   public void makeDeposit(int amount) {
     this.balance += amount;
     System.out.println("\n" + border);
-    System.out.println("Your new balance is: " + this.balance + " gold");
+    displayNewBalance();
     System.out.println(border);
+  }
+
+  public void makeWithdrawal(int amount) {
+    if (amount == 0) {
+      System.out.println("Withdrawal amount must be greater than 0. Please try again.");
+    } else if (this.balance >= amount) {
+      this.balance -= amount;
+      displayNewBalance();
+    } else {
+      System.out.println("Insufficient balance. Please try again.");
+    }
+  }
+
+  public void displayNewBalance() {
+    System.out.println("Your new balance is: " + this.balance + " gold");
   }
 
 }
